@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 using taller_backend.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations;
@@ -15,7 +14,7 @@ public class BranchConfiguration : IEntityTypeConfiguration<Branch>
             builder.ToTable("Branches");
             builder.HasKey(b => b.Id);
 
-            builder.Property(b => b.NumeroComercial)
+            builder.Property(b => b.NumberComercial)
                 .IsRequired();
 
             builder.Property(b => b.Address)
@@ -26,7 +25,7 @@ public class BranchConfiguration : IEntityTypeConfiguration<Branch>
                 .IsRequired()
                 .HasMaxLength(150);
 
-            builder.Property(b => b.ContactName)
+            builder.Property(b => b.Contact_name)
                 .IsRequired()
                 .HasMaxLength(120);
 

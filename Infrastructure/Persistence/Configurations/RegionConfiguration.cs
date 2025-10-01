@@ -11,7 +11,7 @@ public class RegionConfiguration : IEntityTypeConfiguration<Region>
     {
         builder.ToTable("Regions");
         builder.HasKey(r => r.Id);
-        builder.Property(r => r.name)
+        builder.Property(r => r.Name)
                .IsRequired()
                .HasColumnType("varchar(50)");
         builder.HasOne(r => r.Country)

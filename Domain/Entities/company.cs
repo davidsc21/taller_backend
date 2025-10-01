@@ -9,7 +9,7 @@ public class Company
     public string Ukniu { get; private set; } = null!;
     public string Address { get; private set; } = null!;
     public string Email { get; private set; } = null!;
-    public int Cityid { get; private set; } = null!;
+    public int Cityid { get; private set; }
     public virtual ICollection<Branch> Branches { get; set; } = new HashSet<Branch>();
     
     public Company() { }

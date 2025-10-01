@@ -6,7 +6,7 @@ public class Country
 {
     public int Id { get; private set; }
     public string Name { get; private set; } = null!;
-    public virtual ICollection<Region> Regions { get; set; } = new HashSet<Product>();
-    public County() { }
+    public virtual ICollection<Region> Regions { get; set; } = new HashSet<Region>();
+    public Country() { }
     public Country(string name) { Name = name; }
 }
