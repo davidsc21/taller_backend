@@ -37,7 +37,7 @@ public class BranchRepository : IBranchRepository
             .ToListAsync(ct);
     }
 
-    public async Task<IReadOnlyList<Branch>> GetByCityIdAsync(int cityId, CancellationToken ct = default)
+    public async Task<IReadOnlyList<Branch>> GetByCityIdAsync(Guid cityId, CancellationToken ct = default)
     {
         return await _context.Branches
             .Where(b => b.CityId == cityId)
@@ -47,7 +47,7 @@ public class BranchRepository : IBranchRepository
             .ToListAsync(ct);
     }
 
-    public async Task<IReadOnlyList<Branch>> GetByCompanyIdAsync(int companyId, CancellationToken ct = default)
+    public async Task<IReadOnlyList<Branch>> GetByCompanyIdAsync(Guid companyId, CancellationToken ct = default)
     {
         return await _context.Branches
             .Where(b => b.CompanyId == companyId)
@@ -72,7 +72,7 @@ public class BranchRepository : IBranchRepository
         return await query
             .Include(b => b.City)
             .Include(b => b.Company)
-            .OrderBy(b => b.NumeroComercial)
+            .OrderBy(b => b.ComercialNumber)
             .Skip((page - 1) * size)
             .Take(size)
             .AsNoTracking()
@@ -111,4 +111,4 @@ public class BranchRepository : IBranchRepository
         _context.Branches.Remove(branch);
         await _context.SaveChangesAsync(ct);
     }
-}
+} 

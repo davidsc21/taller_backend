@@ -4,25 +4,23 @@ namespace taller_backend.Domain.Entities;
 
 public class Branch
 {
-    public int Id { get; private set; }
-    public int NumberComercial { get; private set; }
-    public string Contact_name { get; private set; } = null!;
+    public Guid Id { get; private set; } = Guid.NewGuid();
+    public int ComercialNumber { get; private set; }
     public string Address { get; private set; } = null!;
     public string Email { get; private set; } = null!;
-    public int Cityid { get; private set; } 
+    public string ContactName { get; private set; } = null!;
     public int Phone { get; private set; }
-    public City City { get; private set; }
-    public Company Company { get; private set; }
+    public Guid CityId { get; set; }
+    public virtual City? City { get; set; }
+    public Guid CompanyId { get; set; }
+    public virtual Company? Company { get; set; }
     public Branch() { }
-    public Branch(int numbercomercial, string contact_name, int cityid, int companyid, string address, string email, int phone)
+    public Branch(int comercial_number, string address, string email, string contact_name, int phone)
     {
-        NumberComercial = numbercomercial;
-        Contact_name = contact_name;
-        Cityid = cityid;
-        Phone = phone;
-        Companyid = companyid;
+        ComercialNumber = comercial_number;
         Address = address;
         Email = email;
+        ContactName = contact_name;
+        Phone = phone;
     }
-
 }

@@ -12,34 +12,34 @@ public class CompanyConfiguration : IEntityTypeConfiguration<Company>
     public void Configure(EntityTypeBuilder<Company> builder)
     {
         builder.ToTable("companies");
-        builder.HasKey(com => com.Id);
+        builder.HasKey(c => c.Id);
 
-        builder.Property(com => com.Name)
-               .IsRequired()
-               .HasColumnType("varchar(120)");
+        builder.Property(c => c.Name)
+            .IsRequired()
+            .HasMaxLength(100);
 
-       builder.Property(com => com.Nit)
-              .IsRequired()
-              .HasColumnType("varchar(120)");
+        builder.Property(c => c.Nit)
+            .IsRequired()
+            .HasMaxLength(50);
 
-        builder.Property(com => com.Address)
-               .IsRequired()
-               .HasColumnType("varchar(120)");
-               
-        builder.Property(com => com.Email)
-               .IsRequired()
-               .HasColumnType("varchar(150)");
+        builder.Property(c => c.Address)
+            .IsRequired()
+            .HasMaxLength(250);
 
-        builder.HasOne(com => com.City)
+        builder.Property(c => c.Email)
+            .IsRequired()
+            .HasMaxLength(150);
+
+        builder.HasOne(c => c.City)
             .WithMany(ci => ci.Companies)
-            .HasForeignKey(com => com.CityId)
+            .HasForeignKey(c => c.CityId)
             .OnDelete(DeleteBehavior.SetNull);
 
-        builder.HasMany(b => b.Branches)
-        .WithOne(com => com.Company)
-        .HasForeignKey(b => b.CompanyId)
-        .OnDelete(DeleteBehavior.SetNull); 
-        
+        builder.HasMany(c => c.Branches)
+            .WithOne()
+            .HasForeignKey(b => b.CompanyId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         builder.HasIndex(c => c.Nit)
                    .IsUnique();
     }

@@ -4,22 +4,21 @@ namespace taller_backend.Domain.Entities;
 
 public class Company
 {
-    public int Id { get; private set; }
+    public Guid Id { get; private set; } = Guid.NewGuid();
     public string Name { get; private set; } = null!;
-    public string Ukniu { get; private set; } = null!;
+    public string Nit { get; private set; } = null!;
     public string Address { get; private set; } = null!;
     public string Email { get; private set; } = null!;
-    public int Cityid { get; private set; }
+    public Guid CityId { get; set; }
+    public virtual City? City { get; set; }
     public virtual ICollection<Branch> Branches { get; set; } = new HashSet<Branch>();
-    
     public Company() { }
-    public Company(string name, string ukniu, string address, string email, int cityid)
+    public Company(string name, string nit, string address, string email)
     {
         Name = name;
-        Ukniu = ukniu;
+        Nit = nit;
         Address = address;
         Email = email;
-        Cityid = cityid;
     }
-
+    
 }

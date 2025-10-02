@@ -14,31 +14,31 @@ public class BranchConfiguration : IEntityTypeConfiguration<Branch>
             builder.ToTable("Branches");
             builder.HasKey(b => b.Id);
 
-            builder.Property(b => b.NumberComercial)
+            builder.Property(b => b.ComercialNumber)
                 .IsRequired();
 
             builder.Property(b => b.Address)
                 .IsRequired()
-                .HasMaxLength(120);
+                .HasMaxLength(250);
 
             builder.Property(b => b.Email)
                 .IsRequired()
                 .HasMaxLength(150);
 
-            builder.Property(b => b.Contact_name)
+            builder.Property(b => b.ContactName)
                 .IsRequired()
-                .HasMaxLength(120);
+                .HasMaxLength(100);
 
             builder.Property(b => b.Phone)
                 .IsRequired();
 
             builder.HasOne(b => b.City)
-                .WithMany(ci => ci.Branches)
+                .WithMany(c => c.Branches)
                 .HasForeignKey(b => b.CityId)
                 .OnDelete(DeleteBehavior.SetNull);
 
             builder.HasOne(b => b.Company)
-                .WithMany(com => com.Branches)
+                .WithMany(c => c.Branches)
                 .HasForeignKey(b => b.CompanyId)
                 .OnDelete(DeleteBehavior.Cascade);
         }

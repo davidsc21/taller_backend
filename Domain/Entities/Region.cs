@@ -4,18 +4,16 @@ namespace taller_backend.Domain.Entities;
 
 public class Region
 {
-    public int Id { get; private set; }
+    public Guid Id { get; private set; } = Guid.NewGuid();
     public string Name { get; private set; } = null!;
-    public string Description { get; private set; } = null!;
 
-    public int Countryid { get; private set; } 
+    public Guid CountryId { get; set; }
+    public virtual Country? Country { get; set; }
     public virtual ICollection<City> Cities { get; set; } = new HashSet<City>();
-    public Region() { }
-    public Region(string name, string description, int countryid)
+
+    private Region() { } // EF
+    public Region(string name)
     {
         Name = name;
-        Description = description;
-        Countryid = countryid;
     }
-
 }
