@@ -14,5 +14,3 @@ Está diseñado como base para un sistema de administración de sucursales de em
 
 ---
 
-## 📂 Estructura del proyecto
-
