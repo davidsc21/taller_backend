@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using taller_backend.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -22,7 +23,7 @@ public class RegionConfiguration : IEntityTypeConfiguration<Region>
                 .OnDelete(DeleteBehavior.SetNull);
 
             builder.HasMany(r => r.Cities)
-                .WithOne()
+                .WithOne(c => c.Region)
                 .HasForeignKey(c => c.RegionId)
                 .OnDelete(DeleteBehavior.Cascade);
         }

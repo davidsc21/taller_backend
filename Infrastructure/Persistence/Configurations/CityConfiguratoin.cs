@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations;
-    public class CityConfiguration : IEntityTypeConfiguration<City>
+ public class CityConfiguration : IEntityTypeConfiguration<City>
     {
         public void Configure(EntityTypeBuilder<City> builder)
         {
@@ -24,12 +24,12 @@ namespace Infrastructure.Persistence.Configurations;
                 .OnDelete(DeleteBehavior.SetNull);
 
             builder.HasMany(c => c.Companies)
-                .WithOne()
+                .WithOne(comp => comp.City)
                 .HasForeignKey(comp => comp.CityId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(c => c.Branches)
-                .WithOne()
+                .WithOne(b => b.City)
                 .HasForeignKey(b => b.CityId)
                 .OnDelete(DeleteBehavior.Cascade);
         }

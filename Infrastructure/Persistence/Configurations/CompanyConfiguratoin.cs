@@ -36,7 +36,7 @@ public class CompanyConfiguration : IEntityTypeConfiguration<Company>
             .OnDelete(DeleteBehavior.SetNull);
 
         builder.HasMany(c => c.Branches)
-            .WithOne()
+            .WithOne(b => b.Company)
             .HasForeignKey(b => b.CompanyId)
             .OnDelete(DeleteBehavior.Cascade);
 
